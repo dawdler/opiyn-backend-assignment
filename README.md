@@ -4,16 +4,23 @@ Opiyn Backend! A simple backend system with two models - Item and Review. Item i
 
 ## Dependencies
 
+	* ruby 2.0 or above
 	* rails 4.0 or above
 	* active_model_serializers
 	* kaminari
 	* faker
 	
-## Running
+## Installation && Running
 
 To start the backend server, execute the following commands directly from the source folder:
 	
-	$ cd opyinbackend/
+	$ git clone https://github.com/dawdler/opyin-backend-assignment.git	
+	
+	$ cd opyin_backend/
+
+	$ bundle install
+
+	$ rake db:migrate
 
 	$ rails s
 
