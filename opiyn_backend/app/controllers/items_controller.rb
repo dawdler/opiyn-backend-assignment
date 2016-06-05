@@ -4,65 +4,19 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all.sort { |x,y| y.reviews.count <=> x.reviews.count }
-    @items = Kaminari.paginate_array(@items).page(params[:page]).per(5)
+    @items = Item.order("reviews_count DESC")
+    @items = @items.page(params[:page]).per(10)
     render json: @items
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-
     render json: @item
   end
 
-  # GET /items/new
-  def new
-    @item = Item.new
-  end
-
-  # GET /items/1/edit
-  def edit
-  end
-
-  # POST /items
-  # POST /items.json
-  def create
-    @item = Item.new(item_params)
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /items/1
-  # PATCH/PUT /items/1.json
-  def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /items/1
-  # DELETE /items/1.json
-  def destroy
-    @item.destroy
-    respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  def home
+    render html: "<strong>Opiyn Backend </strong>".html_safe
   end
 
   private
