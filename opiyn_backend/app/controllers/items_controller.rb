@@ -4,13 +4,15 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.all.sort { |x,y| y.reviews.count <=> x.reviews.count }
+    @items = Kaminari.paginate_array(@items).page(params[:page]).per(5)
     render json: @items
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+
     render json: @item
   end
 
@@ -66,7 +68,9 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      # extract the id from the string using regex
+      get_item_id =  params[:id][/\{(.*?)}/,1]
+      @item = Item.find(get_item_id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
