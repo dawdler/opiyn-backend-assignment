@@ -15,8 +15,10 @@ class ItemsController < ApplicationController
     render json: @item
   end
 
+  # html view for root route
   def home
-    render html: "<strong>Opiyn Backend </strong>".html_safe
+    html_view = "<h2 style=\"margin-left: 40%\">Opiyn Backend </h2> <h4 style=\"margin-left: 42%\"> Coming Soon! </h4></p>"
+    render html: html_view.html_safe
   end
 
   private

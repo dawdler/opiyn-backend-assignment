@@ -46,14 +46,14 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #show" do
     it "returns details of one item" do
       item = Item.second
-      id = "xx"+item.id+"xx"
+      id = "{\"#{item.id}\"}"
       get :show, id: id
       expect(assigns(:item)).to eq(item)
       p assigns(:item)
     end
     it "returns correct count of reviews" do
       reviews_count = Item.first.reviews_count
-      id = "xx"+Item.first.id+"xx"
+      id = "{\"#{Item.first.id}\"}"
       get :show, id: id
       expect(assigns(:item).reviews_count).to eq(reviews_count)
     end
