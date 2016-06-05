@@ -9,6 +9,7 @@ Opiyn Backend! A simple backend system with two models - Item and Review. Item i
 	* active_model_serializers
 	* kaminari
 	* faker
+	* rspec-rails
 	
 ## Installation && Running
 
@@ -21,6 +22,8 @@ To start the backend server, execute the following commands directly from the so
 	$ bundle install
 
 	$ rake db:migrate
+	
+	$ rake db:seed # for seeding of database
 
 	$ rails s
 
@@ -38,4 +41,19 @@ For the implementation of serializers, active_model_serializers gem has been use
 
 For pagination, kaminari gem is used. 
 
-Similarly to generate seed data, faker gem has been used
+To generate seed data, faker gem has been used. For the purpose of testing, rspec-rails and factory_girl_rails has been used.
+
+	$ rspec spec/controllers/item_controller_test.rb
+	
+	$ rspec spec/models/item_test.rb
+
+## Using the APIs endpoints
+
+The code is deployed on [heroku](https://opiyn-assignment.herokuapp.com/).
+
+Using curl to access the APIs:
+	
+	$ curl https://opiyn-assignment.herokuapp.com/items?page=2
+	
+	$ curl https://opiyn-assignment.herokuapp.com/items/%7B2d38771e-26a7-b8b0-d0fb7ec58ab5%7D
+	
